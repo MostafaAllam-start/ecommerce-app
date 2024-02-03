@@ -34,7 +34,7 @@
     <img class="animation__shake" src="{{url('admin/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
   </div>
   @include('admin.layout.header')
-
+  @yield('content')
   @include('admin.layout.sidebar')
   
 

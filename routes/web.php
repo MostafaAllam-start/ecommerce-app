@@ -29,8 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::prefix('/admin')->namespace('App\Http\Controller\Admin')->group(function(){
-    Route::get('dashboard', [AdminController::class, 'dashboard']);
+    Route::group(['middleware' => ['admin']], function(){
+        Route::get('dashboard', [AdminController::class, 'dashboard']);
+        Route::get('logout', [AdminController::class, 'logout']);
+    });
     Route::get('login', [AdminController::class, 'login']);
+    Route::post('login', [AdminController::class, 'login']);
 });
 
 require __DIR__.'/auth.php';
